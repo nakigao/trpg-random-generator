@@ -5,7 +5,7 @@ Random generator for TRPG. (sorry, Japanese version only)
 
 This is my practice application for phalcon2 php framework :)
 
-![index page screenshot](front.png)
+![index page screenshot](sample001.png)
 
 ## Requestments
 
@@ -15,8 +15,8 @@ This is my practice application for phalcon2 php framework :)
 
 ## Road Map
 
-- Fantasy player name generator
-- Fantasy player personality generator
+- Fantasy player name generator [inprogress]
+- Fantasy player personality generator [-]
 
 ## External Links
 
