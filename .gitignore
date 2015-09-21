@@ -84,4 +84,4 @@ sources/app/config/backup.auth
 
 # application
 data/*.sql
-data/*.ps
+bin/*.ps1

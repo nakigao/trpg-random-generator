@@ -78,3 +78,8 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+/**
+ *
+ */
+$di->setShared('config', $config);
