@@ -100,7 +100,8 @@ class MasterNormalNames extends \Phalcon\Mvc\Model
             $sqlForLastName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'last'
 ORDER BY RAND()
@@ -116,7 +117,8 @@ EOM;
             $sqlForLastName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'last'
 ORDER BY RAND()
@@ -132,7 +134,8 @@ EOM;
             $sqlForLastName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'last' AND nation = :whatNation:
 ORDER BY RAND()
@@ -150,7 +153,8 @@ EOM;
             $sqlForLastName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'last' AND nation = :whatNation:
 ORDER BY RAND()
@@ -170,7 +174,8 @@ EOM;
         foreach ($lastNameObject as $row) {
             $lastNameRows[] = array(
                 'body' => $row->body,
-                'body_kana' => $row->body_kana
+                'body_kana' => $row->body_kana,
+                'nation' => $row->nation
             );
         }
         // get first name pool
@@ -182,7 +187,8 @@ EOM;
             $sqlForFirstName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'first'
 ORDER BY RAND()
@@ -198,7 +204,8 @@ EOM;
             $sqlForFirstName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'first' AND gender = :whatGender:
 ORDER BY RAND()
@@ -216,7 +223,8 @@ EOM;
             $sqlForFirstName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'first' AND nation = :whatNation:
 ORDER BY RAND()
@@ -234,7 +242,8 @@ EOM;
             $sqlForFirstName = <<< EOM
 SELECT
   body,
-  body_kana
+  body_kana,
+  nation
 FROM MasterNormalNames
 WHERE type = 'first' AND nation = :whatNation: AND gender = :whatGender:
 ORDER BY RAND()
@@ -256,15 +265,17 @@ EOM;
         foreach ($firstNameObject as $row) {
             $firstNameRows[] = array(
                 'body' => $row->body,
-                'body_kana' => $row->body_kana
+                'body_kana' => $row->body_kana,
+                'nation' => $row->nation
             );
         }
         // join last name pool and first name pool
         $joinedRows = array();
         for ($i = 0; $i < $numberOf; $i++) {
             $joinedRows[] = array(
-                'body' => $lastNameRows[$i]['body'] . ' ' . $firstNameRows[$i]['body'],
-                'body_kana' => $lastNameRows[$i]['body_kana'] . ' ' . $firstNameRows[$i]['body_kana'],
+                'body' => $firstNameRows[$i]['body'] . ' ' . $lastNameRows[$i]['body'],
+                'body_kana' => $firstNameRows[$i]['body_kana'] . ' = ' . $lastNameRows[$i]['body_kana'],
+                'nation' => $firstNameRows[$i]['nation'] . ' x ' . $lastNameRows[$i]['nation'],
             );
         }
         return $joinedRows;

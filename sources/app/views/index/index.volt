@@ -28,6 +28,7 @@
             {% for normalName in normalNames %}
                 <p>{{ normalName['body_kana'] }}</p>
                 <p>{{ normalName['body'] }}</p>
+                <p>{{ normalName['nation'] }}</p>
             {% endfor %}
         {% endif %}
     </div>
