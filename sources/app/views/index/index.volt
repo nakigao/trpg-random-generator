@@ -1,7 +1,8 @@
-<div class="page-header">
-    <h1>Random Character Maker</h1>
+<div class="row">
+    <div class="col-sm-12">
+        <p>リアル世界のキャラクターをランダムに生成します。</p>
+    </div>
 </div>
-
 {{ form('action': '.', 'method': 'post') }}
 <div class="row">
     <div class="col-sm-12">

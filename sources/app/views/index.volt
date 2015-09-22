@@ -9,7 +9,16 @@
 </head>
 <body>
 <div class="container">
-    {{ content() }}
+    <div class="page-header">
+        <h1>Random Generator for TRPG</h1>
+        <ul class="nav nav-pills">
+            <li role="presentation" class="{% if router.getControllerName() == 'index' or router.getControllerName() == ''%}active{% else %}{% endif %}"><a href="index">REAL</a></li>
+            <li role="presentation" class="{% if router.getControllerName() == 'fantasy_sword_world_2'%}active{% else %}{% endif %}"><a href="fantasy_sword_world_2">FANTASY(SW2.0)</a></li>
+        </ul>
+    </div>
+    <div>
+        {{ content() }}
+    </div>
 </div>
 </body>
 </html>
