@@ -101,7 +101,8 @@ class MasterNormalNames extends \Phalcon\Mvc\Model
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
 WHERE type = 'last'
 ORDER BY RAND()
@@ -118,24 +119,28 @@ EOM;
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
-WHERE type = 'last'
+WHERE type = 'last' AND (gender = 'common' OR gender = :whatGender:)
 ORDER BY RAND()
 LIMIT :numberOf:
 EOM;
             $bindForLastName = array(
-                'numberOf' => $numberOf
+                'numberOf' => $numberOf,
+                'whatGender' => $whatGender,
             );
             $bindTypesForLastName = array(
-                'numberOf' => Phalcon\Db\Column::BIND_PARAM_INT
+                'numberOf' => Phalcon\Db\Column::BIND_PARAM_INT,
+                'whatGender' => Phalcon\Db\Column::BIND_PARAM_INT
             );
         } else if ($whatNation != 'all' && $whatGender == 'all') {
             $sqlForLastName = <<< EOM
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
 WHERE type = 'last' AND nation = :whatNation:
 ORDER BY RAND()
@@ -154,18 +159,21 @@ EOM;
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
-WHERE type = 'last' AND nation = :whatNation:
+WHERE type = 'last' AND nation = :whatNation: AND (gender = 'common' OR gender = :whatGender:)
 ORDER BY RAND()
 LIMIT :numberOf:
 EOM;
             $bindForLastName = array(
                 'whatNation' => $whatNation,
+                'whatGender' => $whatGender,
                 'numberOf' => $numberOf
             );
             $bindTypesForLastName = array(
                 'whatNation' => Phalcon\Db\Column::BIND_PARAM_STR,
+                'whatGender' => Phalcon\Db\Column::BIND_PARAM_STR,
                 'numberOf' => Phalcon\Db\Column::BIND_PARAM_INT
             );
         }
@@ -175,7 +183,8 @@ EOM;
             $lastNameRows[] = array(
                 'body' => $row->body,
                 'body_kana' => $row->body_kana,
-                'nation' => $row->nation
+                'nation' => $row->nation,
+                'gender' => $row->gender
             );
         }
         // get first name pool
@@ -188,7 +197,8 @@ EOM;
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
 WHERE type = 'first'
 ORDER BY RAND()
@@ -205,9 +215,10 @@ EOM;
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
-WHERE type = 'first' AND gender = :whatGender:
+WHERE type = 'first' AND (gender = 'common' OR gender = :whatGender:)
 ORDER BY RAND()
 LIMIT :numberOf:
 EOM;
@@ -224,7 +235,8 @@ EOM;
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
 WHERE type = 'first' AND nation = :whatNation:
 ORDER BY RAND()
@@ -243,9 +255,10 @@ EOM;
 SELECT
   body,
   body_kana,
-  nation
+  nation,
+  gender
 FROM MasterNormalNames
-WHERE type = 'first' AND nation = :whatNation: AND gender = :whatGender:
+WHERE type = 'first' AND nation = :whatNation: AND (gender = 'common' OR gender = :whatGender:)
 ORDER BY RAND()
 LIMIT :numberOf:
 EOM;
@@ -266,7 +279,8 @@ EOM;
             $firstNameRows[] = array(
                 'body' => $row->body,
                 'body_kana' => $row->body_kana,
-                'nation' => $row->nation
+                'nation' => $row->nation,
+                'gender' => $row->gender
             );
         }
         // join last name pool and first name pool
@@ -275,7 +289,7 @@ EOM;
             $joinedRows[] = array(
                 'body' => $firstNameRows[$i]['body'] . ' ' . $lastNameRows[$i]['body'],
                 'body_kana' => $firstNameRows[$i]['body_kana'] . ' = ' . $lastNameRows[$i]['body_kana'],
-                'nation' => $firstNameRows[$i]['nation'] . ' x ' . $lastNameRows[$i]['nation'],
+                'nation' => array($firstNameRows[$i]['nation'], $lastNameRows[$i]['nation'])
             );
         }
         return $joinedRows;

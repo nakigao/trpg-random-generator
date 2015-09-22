@@ -2,20 +2,55 @@
     <h1>Random Character Maker</h1>
 </div>
 
+{{ form('action': '.', 'method': 'post') }}
 <div class="row">
     <div class="col-sm-12">
-        {{ form('action': '.', 'method': 'post') }}
         <input type="hidden" name="call_action" value="generate_all">
         <input type="hidden" name="token" value="{{ security.getToken() }}">
-        {{ submit_button('GENERATE ALL') }}
-        <br>
-        {{ select_static('nation', ['all': 'ALL', 'en': 'EN', 'ja': 'JA'], 'useEmpty': false, 'width': 75, 'style': 'width: 75px') }}
+        {{ submit_button('GENERATE') }}
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-12">
+        {{ select_static('nation', ['all': 'ALL', 'en': 'EN', 'ja': 'JA', 'de': 'DE', 'ru': 'RU'], 'useEmpty': false, 'width': 75, 'style': 'width: 75px') }}
         {{ select_static('gender', ['all': 'ALL', 'male': 'Male', 'female': 'Female'], 'useEmpty': false, 'width': 75,  'style': 'width: 75px') }}
-        {{ end_form() }}
+    </div>
+</div>
+{{ end_form() }}
+
+<hr>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p>GENDER</p>
+    </div>
+    <div class="col-sm-8">
+        {% if gender is empty %}
+            <p>-</p>
+        {% else %}
+            <p>{{ gender }}</p>
+        {% endif %}
     </div>
 </div>
 
-<hr>
+<br>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p>PARENT</p>
+    </div>
+    <div class="col-sm-8">
+        {% if parent is empty %}
+            <p>-</p>
+        {% else %}
+            <p>[父] {{ parent['father'] }}</p>
+            <p>[母] {{ parent['mother'] }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<br>
 
 <div class="row">
     <div class="col-sm-4">
@@ -28,7 +63,6 @@
             {% for normalName in normalNames %}
                 <p>{{ normalName['body_kana'] }}</p>
                 <p>{{ normalName['body'] }}</p>
-                <p>{{ normalName['nation'] }}</p>
             {% endfor %}
         {% endif %}
     </div>
