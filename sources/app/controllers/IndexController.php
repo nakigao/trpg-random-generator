@@ -18,13 +18,8 @@ class IndexController extends ControllerBase
                 $callAction = $this->request->getPost("call_action");
                 switch ($callAction) {
                     case 'generate_all':
+                        $this->generateNormalNameAction();
                         $this->generateAnotherNameAction();
-                        $this->generatePersonalityAction();
-                        break;
-                    case 'generate_another_name':
-                        $this->generateAnotherNameAction();
-                        break;
-                    case 'generate_personality':
                         $this->generatePersonalityAction();
                         break;
                     default:
@@ -32,6 +27,14 @@ class IndexController extends ControllerBase
                 }
             }
         }
+    }
+
+    private function generateNormalNameAction()
+    {
+        $model = new MasterNormalNames();
+        $nation = (empty($this->request->getPost("nation")) ? '' : $this->request->getPost("nation"));
+        $gender = (empty($this->request->getPost("gender")) ? '' : $this->request->getPost("gender"));
+        $this->view->setVar('normalNames', $model->findNormalNames(1, $nation, $gender));
     }
 
     private function generateAnotherNameAction()

@@ -8,7 +8,28 @@
         <input type="hidden" name="call_action" value="generate_all">
         <input type="hidden" name="token" value="{{ security.getToken() }}">
         {{ submit_button('GENERATE ALL') }}
+        <br>
+        {{ select_static('nation', ['all': 'ALL', 'en': 'EN', 'ja': 'JA'], 'useEmpty': false, 'width': 75, 'style': 'width: 75px') }}
+        {{ select_static('gender', ['all': 'ALL', 'male': 'Male', 'female': 'Female'], 'useEmpty': false, 'width': 75,  'style': 'width: 75px') }}
         {{ end_form() }}
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p>NORMAL NAME</p>
+    </div>
+    <div class="col-sm-8">
+        {% if normalNames is empty %}
+            <p>-</p>
+        {% else %}
+            {% for normalName in normalNames %}
+                <p>{{ normalName['body_kana'] }}</p>
+                <p>{{ normalName['body'] }}</p>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 
@@ -16,11 +37,7 @@
 
 <div class="row">
     <div class="col-sm-4">
-        {{ form('action': '.', 'method': 'post') }}
-        <input type="hidden" name="call_action" value="generate_another_name">
-        <input type="hidden" name="token" value="{{ security.getToken() }}">
-        {{ submit_button('ANOTHER NAME') }}
-        {{ end_form() }}
+        <p>ANOTHER NAME</p>
     </div>
     <div class="col-sm-8">
         {% if anotherNames is empty %}
@@ -37,11 +54,7 @@
 
 <div class="row">
     <div class="col-sm-4">
-        {{ form('action': '.', 'method': 'post') }}
-        <input type="hidden" name="call_action" value="generate_personality">
-        <input type="hidden" name="token" value="{{ security.getToken() }}">
-        {{ submit_button('PERSONALITY') }}
-        {{ end_form() }}
+        <p>PERSONALITY</p>
     </div>
     <div class="col-sm-8">
         {% if personalities is empty %}
@@ -53,3 +66,5 @@
         {% endif %}
     </div>
 </div>
+
+<br>

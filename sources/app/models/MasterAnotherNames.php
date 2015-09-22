@@ -72,7 +72,7 @@ class MasterAnotherNames extends \Phalcon\Mvc\Model
     }
 
     /**
-     * @param int $numberOf 名前をいくつ生成するか
+     * @param int $numberOf いくつ生成するか
      * @return array
      */
     public function findAnotherNames($numberOf = 3)
