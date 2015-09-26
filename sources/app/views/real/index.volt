@@ -3,7 +3,7 @@
         <p>リアル世界のキャラクターをランダムに生成します。</p>
     </div>
 </div>
-{{ form('action': '.', 'method': 'post') }}
+{{ form('action': 'real', 'method': 'post') }}
 <div class="row">
     <div class="col-sm-12">
         <input type="hidden" name="call_action" value="generate_all">
@@ -14,13 +14,66 @@
 <br>
 <div class="row">
     <div class="col-sm-12">
-        {{ select_static('nation', ['all': 'ALL', 'en': 'EN', 'ja': 'JA', 'de': 'DE', 'ru': 'RU'], 'useEmpty': false, 'width': 75, 'style': 'width: 75px') }}
-        {{ select_static('gender', ['all': 'ALL', 'male': 'Male', 'female': 'Female'], 'useEmpty': false, 'width': 75,  'style': 'width: 75px') }}
+        <?php
+        echo $this->tag->select(
+        array(
+        'nation',
+        MasterNations::find("is_available = TRUE"),
+        'using' => array('nation_id', "body_ja"),
+        'useEmpty' => false,
+        'width' => 150,
+        'style' => 'width: 150px'
+        )
+        );
+        ?>
+        <?php
+        echo  $this->tag->select(
+        array(
+        'gender',
+        MasterGenders::find("is_available = TRUE"),
+        'using' => array('gender_id', "body_ja"),
+        'useEmpty' => false,
+        'width' => 150,
+        'style' => 'width: 150px'
+        )
+        );
+        ?>
+        <?php
+        echo  $this->tag->select(
+        array(
+        'range_of_age',
+        MasterAges::find("type='real' AND is_available = TRUE"),
+        'using' => array('age_id', "body_ja"),
+        'useEmpty' => false,
+        'width' => 150,
+        'style' => 'width: 150px'
+        )
+        );
+        ?>
     </div>
 </div>
 {{ end_form() }}
 
 <hr>
+
+
+<div class="row">
+    <div class="col-sm-4">
+        <p>NAME</p>
+    </div>
+    <div class="col-sm-8">
+        {% if normalNames is empty %}
+            <p>-</p>
+        {% else %}
+            {% for normalName in normalNames %}
+                <p>{{ normalName['body_kana'] }}</p>
+                {#<p>{{ normalName['body'] }}</p>#}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<br>
 
 <div class="row">
     <div class="col-sm-4">
@@ -39,14 +92,13 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <p>PARENT</p>
+        <p>AGE</p>
     </div>
     <div class="col-sm-8">
-        {% if parent is empty %}
+        {% if age is not defined %}
             <p>-</p>
         {% else %}
-            <p>[父] {{ parent['father'] }}</p>
-            <p>[母] {{ parent['mother'] }}</p>
+            <p>{{ age }}</p>
         {% endif %}
     </div>
 </div>
@@ -55,16 +107,34 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <p>NORMAL NAME</p>
+        <p>BIRTH</p>
     </div>
     <div class="col-sm-8">
-        {% if normalNames is empty %}
+        {% if birthdayInformation is empty %}
             <p>-</p>
         {% else %}
-            {% for normalName in normalNames %}
-                <p>{{ normalName['body_kana'] }}</p>
-                <p>{{ normalName['body'] }}</p>
-            {% endfor %}
+            {% if birthdayInformation['astrology'].name is empty %}
+                <p>不明</p>
+            {% else %}
+                <p>{{ birthdayInformation['month'] }}月{{ birthdayInformation['day'] }}日 ({{ birthdayInformation['astrology'].name }})</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p>PARENTS</p>
+    </div>
+    <div class="col-sm-8">
+        {% if parent is empty %}
+            <p>-</p>
+            <p>-</p>
+        {% else %}
+            <p>[父] {{ parent['father'] }}</p>
+            <p>[母] {{ parent['mother'] }}</p>
         {% endif %}
     </div>
 </div>
