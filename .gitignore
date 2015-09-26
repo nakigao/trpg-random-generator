@@ -85,3 +85,6 @@ sources/app/config/backup.auth
 # application
 data/*.sql
 bin/*.ps1
+
+# bower
+bower_components

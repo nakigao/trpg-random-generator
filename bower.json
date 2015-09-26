@@ -1,0 +1,26 @@
+{
+  "name": "trpg-random-generator",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "src",
+    "fonts",
+    "grunt",
+    "js",
+    "less",
+    "package.json",
+    "Gruntfile.js",
+    "package.js"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
