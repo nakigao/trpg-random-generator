@@ -1,6 +1,6 @@
 <?php
 
-class MasterAges extends \Phalcon\Mvc\Model
+class MasterAlignments extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -8,12 +8,6 @@ class MasterAges extends \Phalcon\Mvc\Model
      * @var integer
      */
     public $id;
-
-    /**
-     *
-     * @var string
-     */
-    public $age_id;
 
     /**
      *
@@ -29,33 +23,15 @@ class MasterAges extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
+     * @var string
      */
-    public $min;
-
-    /**
-     *
-     * @var integer
-     */
-    public $max;
+    public $description;
 
     /**
      *
      * @var string
      */
     public $world_type;
-
-    /**
-     *
-     * @var string
-     */
-    public $gender_type;
-
-    /**
-     *
-     * @var string
-     */
-    public $race_type;
 
     /**
      *
@@ -82,14 +58,14 @@ class MasterAges extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'master_ages';
+        return 'master_alignments';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return MasterAges[]
+     * @return MasterAlignments[]
      */
     public static function find($parameters = null)
     {
@@ -100,7 +76,7 @@ class MasterAges extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return MasterAges
+     * @return MasterAlignments
      */
     public static function findFirst($parameters = null)
     {

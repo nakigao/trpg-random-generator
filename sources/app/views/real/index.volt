@@ -42,7 +42,7 @@
         echo  $this->tag->select(
         array(
         'range_of_age',
-        MasterAges::find("type='real' AND is_available = TRUE"),
+        MasterAges::find("world_type='real' AND is_available = TRUE"),
         'using' => array('age_id', "body_ja"),
         'useEmpty' => false,
         'width' => 150,
