@@ -219,16 +219,32 @@
         <p>見た目</p>
     </div>
     <div class="col-sm-8">
-        {% if anotherNames is empty %}
-            <p>【身長】-</p>
-            <p>【体重】-</p>
-            <p>【髪型】-</p>
-            <p>【髪の色】-</p>
-            <p>【目の色】-</p>
-            <p>【肌の色】-</p>
+        {% if looksMetaphorWord is empty %}
+            <p>
+                【体格】
+                <br>
+                -
+                <br>
+                -
+            </p>
+            {#<p>【身長】-</p>#}
+            {#<p>【体重】-</p>#}
         {% else %}
-            {#nothing to do#}
+            <p>
+                【体格】
+                <br>
+                {{ looksMetaphorWord.body_ja }}
+                <br>
+                {{ looksMetaphorWord.description }}
+            </p>
         {% endif %}
+        <p>【髪型】-</p>
+
+        <p>【髪の色】-</p>
+
+        <p>【目の色】-</p>
+
+        <p>【肌の色】-</p>
     </div>
 </div>
 

@@ -40,12 +40,27 @@ class FantasyController extends ControllerBase
                         $this->__generateJobs();
                         //
                         $this->__generateAlignments();
+                        //
+                        $this->__generateLooksMetaphorWords();
                         break;
                     default:
                         // nothing to do.
                 }
             }
         }
+    }
+
+    /**
+     *
+     */
+    private function __generateLooksMetaphorWords()
+    {
+        $model = new MasterLooksMetaphorWords();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksMetaphorWord', $records);
     }
 
     /**
