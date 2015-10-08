@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ pageTitle }} | {{ siteTitle }}</title>
     <link rel="stylesheet" href="bower/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/basic_shape.css" type="text/css">
 </head>
 <body>
 <div class="container">

@@ -42,12 +42,69 @@ class FantasyController extends ControllerBase
                         $this->__generateAlignments();
                         //
                         $this->__generateLooksMetaphorWords();
+                        //
+                        $this->__generateLooksHairStyle();
+                        //
+                        $this->__generateLooksHairColor();
+                        //
+                        $this->__generateLooksEyeColor();
+                        //
+                        $this->__generateLooksSkinColor();
                         break;
                     default:
                         // nothing to do.
                 }
             }
         }
+    }
+
+    /**
+     *
+     */
+    private function __generateLooksHairStyle()
+    {
+        $model = new MasterLooksHairStyles();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksHairStyle', $records);
+    }
+    /**
+     *
+     */
+    private function __generateLooksHairColor()
+    {
+        $model = new MasterLooksHairColors();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksHairColor', $records);
+    }
+    /**
+     *
+     */
+    private function __generateLooksEyeColor()
+    {
+        $model = new MasterLooksEyeColors();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksEyeColor', $records);
+    }
+    /**
+     *
+     */
+    private function __generateLooksSkinColor()
+    {
+        $model = new MasterLooksSkinColors();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksSkinColor', $records);
     }
 
     /**
