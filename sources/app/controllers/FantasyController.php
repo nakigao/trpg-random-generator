@@ -50,12 +50,188 @@ class FantasyController extends ControllerBase
                         $this->__generateLooksEyeColor();
                         //
                         $this->__generateLooksSkinColor();
+                        //
+                        $this->__generateLooksFashion();
+                        //
+                        $this->__generateLooksFashionSense();
+                        //
+                        $this->__generateAccessory();
+                        //
+                        $this->__generateArmor();
+                        //
+                        $this->__generateItem();
+                        //
+                        $this->__generateWeapon();
+                        //
+                        $this->__generateBirth();
+                        //
+                        $this->__generateTrigger();
+                        //
+                        $this->__generateImportant();
+                        //
+                        $this->__generateStrongPoint();
+                        //
+                        $this->__generateWeakPoint();
+                        //
+                        $this->__generateCallNameFirstParson();
+                        //
+                        $this->__generateCallNameSecondParson();
                         break;
                     default:
                         // nothing to do.
                 }
             }
         }
+    }
+
+    /**
+     *
+     */
+    private function __generateBirth()
+    {
+        $model = new MasterBirthClasses();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('birth', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateTrigger()
+    {
+        $model = new MasterTriggers();
+        $records = $model->findFirst(array(
+                "category = 'stem'",
+                "order" => "rand()"
+            )
+        );
+        $records2 = $model->findFirst(array(
+                "category = 'suffix'",
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('triggerStem', $records);
+        $this->view->setVar('triggerSuffix', $records2);
+    }
+    /**
+     *
+     */
+    private function __generateImportant()
+    {
+        $model = new MasterImportants();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('important', $records);
+    }
+    /**
+     *
+     */
+    private function __generateStrongPoint()
+    {
+        $model = new MasterStrongAndWeakPoints();
+        $records = $model->findFirst(array(
+                "word_type = 'common' or word_type = 'strong'",
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('strongPoint', $records);
+    }
+    /**
+     *
+     */
+    private function __generateWeakPoint()
+    {
+        $model = new MasterStrongAndWeakPoints();
+        $records = $model->findFirst(array(
+                "category = 'common' or word_type = 'weak'",
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('weakPoint', $records);
+    }
+    /**
+     *
+     */
+    private function __generateCallNameFirstParson()
+    {
+        $model = new MasterCallPersonNames();
+        $records = $model->findFirst(array(
+                "category = 'common' or category = 'first'",
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('firstParson', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateCallNameSecondParson()
+    {
+        $model = new MasterCallPersonNames();
+        $records = $model->findFirst(array(
+                "category = 'common' or category = 'second'",
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('secondParson', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateAccessory()
+    {
+        $model = new MasterAccessories();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('accessory', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateArmor()
+    {
+        $model = new MasterArmors();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('armor', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateItem()
+    {
+        $model = new MasterItems();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('item', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateWeapon()
+    {
+        $model = new MasterWeapons();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('weapon', $records);
     }
 
     /**
@@ -70,6 +246,7 @@ class FantasyController extends ControllerBase
         );
         $this->view->setVar('looksHairStyle', $records);
     }
+
     /**
      *
      */
@@ -82,6 +259,7 @@ class FantasyController extends ControllerBase
         );
         $this->view->setVar('looksHairColor', $records);
     }
+
     /**
      *
      */
@@ -94,6 +272,7 @@ class FantasyController extends ControllerBase
         );
         $this->view->setVar('looksEyeColor', $records);
     }
+
     /**
      *
      */
@@ -105,6 +284,32 @@ class FantasyController extends ControllerBase
             )
         );
         $this->view->setVar('looksSkinColor', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateLooksFashion()
+    {
+        $model = new MasterLooksFashions();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksFashion', $records);
+    }
+
+    /**
+     *
+     */
+    private function __generateLooksFashionSense()
+    {
+        $model = new MasterLooksFashionSenses();
+        $records = $model->findFirst(array(
+                "order" => "rand()"
+            )
+        );
+        $this->view->setVar('looksFashionSense', $records);
     }
 
     /**

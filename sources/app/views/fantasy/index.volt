@@ -204,6 +204,19 @@
 
 <div class="row">
     <div class="col-sm-4">
+        <p>服装系統</p>
+    </div>
+    <div class="col-sm-8">
+        {% if looksFashion is empty %}
+            <p>-</p>
+        {% else %}
+            <p>{{ looksFashion.body_ja }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
         <p>髪の色</p>
     </div>
     <div class="col-sm-8">
@@ -251,7 +264,7 @@
         {% if weapon is empty %}
             <p>-</p>
         {% else %}
-            <p>-</p>
+            <p>{{ weapon.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -264,7 +277,7 @@
         {% if armor is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ armor.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -277,24 +290,23 @@
         {% if accessory is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ accessory.body_ja }}</p>
         {% endif %}
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-4">
-        <p>服装系統</p>
+        <p>アイテム</p>
     </div>
     <div class="col-sm-8">
-        {% if fashion is empty %}
+        {% if item is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ item.body_ja }}</p>
         {% endif %}
     </div>
 </div>
-
 
 <h2>PERSONALITY</h2>
 
@@ -306,7 +318,7 @@
         {% if birth is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ birth.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -316,10 +328,10 @@
         <p>きっかけ</p>
     </div>
     <div class="col-sm-8">
-        {% if trigger is empty %}
+        {% if triggerStem is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ triggerStem.body_ja }}{{ triggerSuffix.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -332,7 +344,7 @@
         {% if important is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ important.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -345,7 +357,7 @@
         {% if strongPoint is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ strongPoint.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -358,7 +370,7 @@
         {% if weakPoint is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ weakPoint.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -371,7 +383,7 @@
         {% if firstParson is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ firstParson.body_ja }}</p>
         {% endif %}
     </div>
 </div>
@@ -384,7 +396,7 @@
         {% if secondParson is empty %}
             <p>-</p>
         {% else %}
-            <p>TODO</p>
+            <p>{{ secondParson.body_ja }}</p>
         {% endif %}
     </div>
 </div>

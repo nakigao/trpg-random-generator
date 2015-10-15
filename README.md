@@ -13,12 +13,17 @@ This is my practice application for phalcon2 php framework :)
     - Phalcon php framework 2.0.7
 - MySQL 5.6.x
 
-## Road Map
-
-- Fantasy player name generator [inprogress]
-- Fantasy player personality generator [-]
-
 ## External Links
 
 [Phalcon - High Performance PHP Framework](https://phalconphp.com/)
 
+## Road Map
+
+- Fantasy player name generator [done]
+- Fantasy player personality generator [done]
+- Fantasy Sword World 2.0 generator [inprogress]
+
+## Refactoring Point
+
+- table name is too long => master_は不要
+- table column name 'category' and 'type' are same roll => 統一したい
